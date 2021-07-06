@@ -2,7 +2,7 @@
   <div class="homepage">
     <div class="result-container">
       <div v-for="(item,i) in searchResult" :key="item.id" class="display-unit">
-        <img src="item.image" />
+        <img :src=item.image />
         <div class="unit-title">
           {{ item.name }}
         </div>
@@ -53,14 +53,13 @@ export default {
 
 .result-container {
   width: 100%;
-  height: 200px;
   background-color: aqua;
 }
 
 .display-unit {
   display: inline-block;
-  width: 160px;
-  height: 160px;
+  width: 260px;
+  height: 260px;
   margin-top: 5px;
   margin-left: 5px;
   margin-right: 5px;
