@@ -1,12 +1,14 @@
 <template>
   <div class="homepage">
     <div class="result-container">
-      <div v-for="(item,i) in searchResult" :key="item.id" class="display-unit">
+      <div v-for="(item) in searchResult" :key="item.id" class="display-unit">
         <img :src=item.image />
         <div class="unit-title">
           {{ item.name }}
         </div>
-        key is {{ i }}
+        <div class="unit-price">
+          ￥{{ item.price }}
+        </div>
       </div>
     </div>
   </div>
@@ -53,16 +55,27 @@ export default {
 
 .result-container {
   width: 100%;
+  padding-left: 1%;
   background-color: aqua;
 }
 
 .display-unit {
   display: inline-block;
-  width: 260px;
-  height: 260px;
+  width: 300px;
+  height: 320px;
   margin-top: 5px;
   margin-left: 5px;
   margin-right: 5px;
   background-color: bisque;
+}
+
+img {
+  width: 260px;
+  height: 260px;
+}
+
+.unit-title {
+  font-size: 20px;
+  font-weight: 500;
 }
 </style>
