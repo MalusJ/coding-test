@@ -41,8 +41,8 @@
     </div>
   </header>
 </template>
-
 <script>
+
 export default {
   name: 'Header',
   data() {
@@ -53,7 +53,15 @@ export default {
   },
   watch: {
     searchText() {
+      const axios = require('axios');
       console.log(this.searchText);
+      axios.get('http://localhost:3000').then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      }).then(() => {
+        console.log('finished');
+      });
     },
   },
 };

@@ -15,6 +15,9 @@
 </template>
 
 <script>
+
+
+
 export default {
   name: 'Homepage',
   data: () => ({
@@ -56,21 +59,21 @@ export default {
 .result-container {
   width: 100%;
   padding-left: 1%;
-  background-color: aqua;
+  // background-color: aqua;
 }
 
 .display-unit {
   display: inline-block;
-  width: 300px;
-  height: 320px;
+  width: 270px;
+  height: 310px;
   margin-top: 5px;
   margin-left: 5px;
-  margin-right: 5px;
-  background-color: bisque;
+  margin-right: 40px;
+  background-color: #f0f0c1;
 }
 
 img {
-  width: 260px;
+  width: 270px;
   height: 260px;
 }
 
