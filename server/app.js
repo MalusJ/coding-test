@@ -17,6 +17,7 @@
 */
 
 const http = require('http');
+const { url } = require('inspector');
 const data = require('./data');
 
 const port = 3000;
@@ -32,12 +33,21 @@ const port = 3000;
 http
   .createServer((req, res) => {
     // .. Here you can create your data response in a JSON format
-    // res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.write(data[0].id);
-    res.write(req.url);
-    res.write('Response goes in here...'); // Write out the default response
+    res.setHeader('Content-Type', 'text/html;charset=UTF-8');
+    res.writeHead(200, {
+      'Access-Control-Allow-Origin': 'http://localhost:9000',
+      'Access-Contorl-Allow-Headers': 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,Origin',
+      'Access-Control-Allow-Methods': 'GET, PUT, OPTIONS, POST',
+    });
+    //  could update the method later to only get url parameter
+    req.setEncoding('UTF-8');
+    const urlText = req.url;
+    const ipos = urlText.indexOf('=');
+    const decoded = decodeURIComponent(urlText.substring(ipos + 1, urlText.length));
+    res.write(decoded);
     res.end();
   })
   .listen(port);
 
+// eslint-disable-next-line no-console
 console.log(`[Server running on port ${port}]`);
