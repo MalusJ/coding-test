@@ -59,12 +59,18 @@ export default {
       //  axios.post('http://localhost:3000', { title: 'testing' } ).then((res) => {
         console.log(res.data);
         this.returnData = res.data;
+        this.submit();
       }).catch((err) => {
         console.log('not working');
         console.log(err);
       }).then(() => {
         console.log('finished');
       });
+    },
+  },
+  methods: {
+    submit() {
+      this.$emit('shijian', this.returnData);
     },
   },
 };

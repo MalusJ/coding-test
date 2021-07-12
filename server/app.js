@@ -58,8 +58,11 @@ http
         }
       }
     }
-
-    res.write(JSON.stringify(ret));
+    if (keyword === '') {
+      res.write(JSON.stringify(data));
+    } else {
+      res.write(JSON.stringify(ret));
+    }
     res.end();
   })
   .listen(port);
