@@ -50,6 +50,7 @@ export default {
     return {
       searchBarVisible: false,
       searchText: '',
+      returnData: [],
     };
   },
   watch: {
@@ -57,6 +58,7 @@ export default {
       axios.get('http://localhost:3000', { params: { _search: this.searchText } }).then((res) => {
       //  axios.post('http://localhost:3000', { title: 'testing' } ).then((res) => {
         console.log(res.data);
+        this.returnData = res.data;
       }).catch((err) => {
         console.log('not working');
         console.log(err);

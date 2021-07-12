@@ -43,8 +43,23 @@ http
     req.setEncoding('UTF-8');
     const urlText = req.url;
     const ipos = urlText.indexOf('=');
-    const decoded = decodeURIComponent(urlText.substring(ipos + 1, urlText.length));
-    res.write(decoded);
+    const keyword = decodeURIComponent(urlText.substring(ipos + 1, urlText.length));
+    const ret = [];
+    // search through the data to get all products that contains the word
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].name.search(keyword) !== -1 && keyword !== '') {
+        ret.push(data[i]);
+      } else {
+        for (let j = 0; j < data[i].tags.length; j += 1) {
+          if (data[i].tags[j].search(keyword) !== -1 && keyword !== '') {
+            ret.push(data[i]);
+            break;
+          }
+        }
+      }
+    }
+
+    res.write(JSON.stringify(ret));
     res.end();
   })
   .listen(port);
