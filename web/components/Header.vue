@@ -41,19 +41,36 @@
     </div>
   </header>
 </template>
-
 <script>
+const axios = require('axios');
+
 export default {
   name: 'Header',
   data() {
     return {
       searchBarVisible: false,
       searchText: '',
+      returnData: [],
     };
   },
   watch: {
     searchText() {
-      console.log(this.searchText);
+      axios.get('http://localhost:3000', { params: { _search: this.searchText } }).then((res) => {
+      //  axios.post('http://localhost:3000', { title: 'testing' } ).then((res) => {
+        console.log(res.data);
+        this.returnData = res.data;
+        this.submit();
+      }).catch((err) => {
+        console.log('not working');
+        console.log(err);
+      }).then(() => {
+        console.log('finished');
+      });
+    },
+  },
+  methods: {
+    submit() {
+      this.$emit('shijian', this.returnData);
     },
   },
 };
